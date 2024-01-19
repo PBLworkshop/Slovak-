@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        #map {
+            width: 1123px;
+            height: 635px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/Nuclearpowerplantscriticalinfrastructure_1.js"></script>
+        <script src="data/Militaryairbasescriticalinfrastructure_2.js"></script>
+        <script src="data/Waterconstructioncriticalinfrastructure_3.js"></script>
+        <script src="data/Chemicalcontrolunitscriticalinfrastructure_4.js"></script>
+        <script src="data/Highwaytransportcriticalinfrastructure_5.js"></script>
+        <script src="data/River_6.js"></script>
+        <script src="data/Bufferedforchemicalcriticalinfrastructure_7.js"></script>
+        <script src="data/Bufferedforwaterinfrastructure_8.js"></script>
+        <script src="data/Bufferedfornuclearpowerplantcriticalinfrastructure_9.js"></script>
+        <script src="data/Bufferedformilitaryairportcriticalinfrastructure_10.js"></script>
+        <script src="data/Bufferedforhighwaycriticalinfrastructure_11.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[48.094793337938334,16.913140631412542],[49.41020543601733,20.44665151300584]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_OSMStandard_0');
+        map.getPane('pane_OSMStandard_0').style.zIndex = 400;
+        var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OSMStandard_0',
+            opacity: 1.0,
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OSMStandard_0;
+        map.addLayer(layer_OSMStandard_0);
+        function pop_Nuclearpowerplantscriticalinfrastructure_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">power plan</th>\
+                        <td>' + (feature.properties['power plan'] !== null ? autolinker.link(feature.properties['power plan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Nuclearpowerplantscriticalinfrastructure_1_0() {
+            return {
+                pane: 'pane_Nuclearpowerplantscriticalinfrastructure_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(210,222,44,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Nuclearpowerplantscriticalinfrastructure_1');
+        map.getPane('pane_Nuclearpowerplantscriticalinfrastructure_1').style.zIndex = 401;
+        map.getPane('pane_Nuclearpowerplantscriticalinfrastructure_1').style['mix-blend-mode'] = 'normal';
+        var layer_Nuclearpowerplantscriticalinfrastructure_1 = new L.geoJson(json_Nuclearpowerplantscriticalinfrastructure_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Nuclearpowerplantscriticalinfrastructure_1',
+            layerName: 'layer_Nuclearpowerplantscriticalinfrastructure_1',
+            pane: 'pane_Nuclearpowerplantscriticalinfrastructure_1',
+            onEachFeature: pop_Nuclearpowerplantscriticalinfrastructure_1,
+            style: style_Nuclearpowerplantscriticalinfrastructure_1_0,
+        });
+        bounds_group.addLayer(layer_Nuclearpowerplantscriticalinfrastructure_1);
+        map.addLayer(layer_Nuclearpowerplantscriticalinfrastructure_1);
+        function pop_Militaryairbasescriticalinfrastructure_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">air base</th>\
+                        <td>' + (feature.properties['air base'] !== null ? autolinker.link(feature.properties['air base'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Militaryairbasescriticalinfrastructure_2_0() {
+            return {
+                pane: 'pane_Militaryairbasescriticalinfrastructure_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(16,161,53,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Militaryairbasescriticalinfrastructure_2');
+        map.getPane('pane_Militaryairbasescriticalinfrastructure_2').style.zIndex = 402;
+        map.getPane('pane_Militaryairbasescriticalinfrastructure_2').style['mix-blend-mode'] = 'normal';
+        var layer_Militaryairbasescriticalinfrastructure_2 = new L.geoJson(json_Militaryairbasescriticalinfrastructure_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Militaryairbasescriticalinfrastructure_2',
+            layerName: 'layer_Militaryairbasescriticalinfrastructure_2',
+            pane: 'pane_Militaryairbasescriticalinfrastructure_2',
+            onEachFeature: pop_Militaryairbasescriticalinfrastructure_2,
+            style: style_Militaryairbasescriticalinfrastructure_2_0,
+        });
+        bounds_group.addLayer(layer_Militaryairbasescriticalinfrastructure_2);
+        map.addLayer(layer_Militaryairbasescriticalinfrastructure_2);
+        function pop_Waterconstructioncriticalinfrastructure_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">water plan</th>\
+                        <td>' + (feature.properties['water plan'] !== null ? autolinker.link(feature.properties['water plan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Waterconstructioncriticalinfrastructure_3_0() {
+            return {
+                pane: 'pane_Waterconstructioncriticalinfrastructure_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(12,154,242,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Waterconstructioncriticalinfrastructure_3');
+        map.getPane('pane_Waterconstructioncriticalinfrastructure_3').style.zIndex = 403;
+        map.getPane('pane_Waterconstructioncriticalinfrastructure_3').style['mix-blend-mode'] = 'normal';
+        var layer_Waterconstructioncriticalinfrastructure_3 = new L.geoJson(json_Waterconstructioncriticalinfrastructure_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Waterconstructioncriticalinfrastructure_3',
+            layerName: 'layer_Waterconstructioncriticalinfrastructure_3',
+            pane: 'pane_Waterconstructioncriticalinfrastructure_3',
+            onEachFeature: pop_Waterconstructioncriticalinfrastructure_3,
+            style: style_Waterconstructioncriticalinfrastructure_3_0,
+        });
+        bounds_group.addLayer(layer_Waterconstructioncriticalinfrastructure_3);
+        map.addLayer(layer_Waterconstructioncriticalinfrastructure_3);
+        function pop_Chemicalcontrolunitscriticalinfrastructure_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">HAZMAT</th>\
+                        <td>' + (feature.properties['HAZMAT'] !== null ? autolinker.link(feature.properties['HAZMAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Chemicalcontrolunitscriticalinfrastructure_4_0() {
+            return {
+                pane: 'pane_Chemicalcontrolunitscriticalinfrastructure_4',
+                radius: 18.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,158,1,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Chemicalcontrolunitscriticalinfrastructure_4');
+        map.getPane('pane_Chemicalcontrolunitscriticalinfrastructure_4').style.zIndex = 404;
+        map.getPane('pane_Chemicalcontrolunitscriticalinfrastructure_4').style['mix-blend-mode'] = 'normal';
+        var layer_Chemicalcontrolunitscriticalinfrastructure_4 = new L.geoJson(json_Chemicalcontrolunitscriticalinfrastructure_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Chemicalcontrolunitscriticalinfrastructure_4',
+            layerName: 'layer_Chemicalcontrolunitscriticalinfrastructure_4',
+            pane: 'pane_Chemicalcontrolunitscriticalinfrastructure_4',
+            onEachFeature: pop_Chemicalcontrolunitscriticalinfrastructure_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Chemicalcontrolunitscriticalinfrastructure_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Chemicalcontrolunitscriticalinfrastructure_4);
+        map.addLayer(layer_Chemicalcontrolunitscriticalinfrastructure_4);
+        function pop_Highwaytransportcriticalinfrastructure_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">highway</th>\
+                        <td>' + (feature.properties['highway'] !== null ? autolinker.link(feature.properties['highway'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Highwaytransportcriticalinfrastructure_5_0() {
+            return {
+                pane: 'pane_Highwaytransportcriticalinfrastructure_5',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Highwaytransportcriticalinfrastructure_5');
+        map.getPane('pane_Highwaytransportcriticalinfrastructure_5').style.zIndex = 405;
+        map.getPane('pane_Highwaytransportcriticalinfrastructure_5').style['mix-blend-mode'] = 'normal';
+        var layer_Highwaytransportcriticalinfrastructure_5 = new L.geoJson(json_Highwaytransportcriticalinfrastructure_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Highwaytransportcriticalinfrastructure_5',
+            layerName: 'layer_Highwaytransportcriticalinfrastructure_5',
+            pane: 'pane_Highwaytransportcriticalinfrastructure_5',
+            onEachFeature: pop_Highwaytransportcriticalinfrastructure_5,
+            style: style_Highwaytransportcriticalinfrastructure_5_0,
+        });
+        bounds_group.addLayer(layer_Highwaytransportcriticalinfrastructure_5);
+        map.addLayer(layer_Highwaytransportcriticalinfrastructure_5);
+        function pop_River_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">river</th>\
+                        <td>' + (feature.properties['river'] !== null ? autolinker.link(feature.properties['river'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_River_6_0() {
+            return {
+                pane: 'pane_River_6',
+                opacity: 1,
+                color: 'rgba(0,229,250,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_River_6');
+        map.getPane('pane_River_6').style.zIndex = 406;
+        map.getPane('pane_River_6').style['mix-blend-mode'] = 'normal';
+        var layer_River_6 = new L.geoJson(json_River_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_River_6',
+            layerName: 'layer_River_6',
+            pane: 'pane_River_6',
+            onEachFeature: pop_River_6,
+            style: style_River_6_0,
+        });
+        bounds_group.addLayer(layer_River_6);
+        map.addLayer(layer_River_6);
+        function pop_Bufferedforchemicalcriticalinfrastructure_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">HAZMAT</th>\
+                        <td>' + (feature.properties['HAZMAT'] !== null ? autolinker.link(feature.properties['HAZMAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Bufferedforchemicalcriticalinfrastructure_7_0() {
+            return {
+                pane: 'pane_Bufferedforchemicalcriticalinfrastructure_7',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(10,2,251,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Bufferedforchemicalcriticalinfrastructure_7');
+        map.getPane('pane_Bufferedforchemicalcriticalinfrastructure_7').style.zIndex = 407;
+        map.getPane('pane_Bufferedforchemicalcriticalinfrastructure_7').style['mix-blend-mode'] = 'normal';
+        var layer_Bufferedforchemicalcriticalinfrastructure_7 = new L.geoJson(json_Bufferedforchemicalcriticalinfrastructure_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Bufferedforchemicalcriticalinfrastructure_7',
+            layerName: 'layer_Bufferedforchemicalcriticalinfrastructure_7',
+            pane: 'pane_Bufferedforchemicalcriticalinfrastructure_7',
+            onEachFeature: pop_Bufferedforchemicalcriticalinfrastructure_7,
+            style: style_Bufferedforchemicalcriticalinfrastructure_7_0,
+        });
+        bounds_group.addLayer(layer_Bufferedforchemicalcriticalinfrastructure_7);
+        map.addLayer(layer_Bufferedforchemicalcriticalinfrastructure_7);
+        function pop_Bufferedforwaterinfrastructure_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">water plan</th>\
+                        <td>' + (feature.properties['water plan'] !== null ? autolinker.link(feature.properties['water plan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Bufferedforwaterinfrastructure_8_0() {
+            return {
+                pane: 'pane_Bufferedforwaterinfrastructure_8',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,0,42,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Bufferedforwaterinfrastructure_8');
+        map.getPane('pane_Bufferedforwaterinfrastructure_8').style.zIndex = 408;
+        map.getPane('pane_Bufferedforwaterinfrastructure_8').style['mix-blend-mode'] = 'normal';
+        var layer_Bufferedforwaterinfrastructure_8 = new L.geoJson(json_Bufferedforwaterinfrastructure_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Bufferedforwaterinfrastructure_8',
+            layerName: 'layer_Bufferedforwaterinfrastructure_8',
+            pane: 'pane_Bufferedforwaterinfrastructure_8',
+            onEachFeature: pop_Bufferedforwaterinfrastructure_8,
+            style: style_Bufferedforwaterinfrastructure_8_0,
+        });
+        bounds_group.addLayer(layer_Bufferedforwaterinfrastructure_8);
+        map.addLayer(layer_Bufferedforwaterinfrastructure_8);
+        function pop_Bufferedfornuclearpowerplantcriticalinfrastructure_9(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">power plan</th>\
+                        <td>' + (feature.properties['power plan'] !== null ? autolinker.link(feature.properties['power plan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Bufferedfornuclearpowerplantcriticalinfrastructure_9_0() {
+            return {
+                pane: 'pane_Bufferedfornuclearpowerplantcriticalinfrastructure_9',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Bufferedfornuclearpowerplantcriticalinfrastructure_9');
+        map.getPane('pane_Bufferedfornuclearpowerplantcriticalinfrastructure_9').style.zIndex = 409;
+        map.getPane('pane_Bufferedfornuclearpowerplantcriticalinfrastructure_9').style['mix-blend-mode'] = 'normal';
+        var layer_Bufferedfornuclearpowerplantcriticalinfrastructure_9 = new L.geoJson(json_Bufferedfornuclearpowerplantcriticalinfrastructure_9, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Bufferedfornuclearpowerplantcriticalinfrastructure_9',
+            layerName: 'layer_Bufferedfornuclearpowerplantcriticalinfrastructure_9',
+            pane: 'pane_Bufferedfornuclearpowerplantcriticalinfrastructure_9',
+            onEachFeature: pop_Bufferedfornuclearpowerplantcriticalinfrastructure_9,
+            style: style_Bufferedfornuclearpowerplantcriticalinfrastructure_9_0,
+        });
+        bounds_group.addLayer(layer_Bufferedfornuclearpowerplantcriticalinfrastructure_9);
+        map.addLayer(layer_Bufferedfornuclearpowerplantcriticalinfrastructure_9);
+        function pop_Bufferedformilitaryairportcriticalinfrastructure_10(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">air base</th>\
+                        <td>' + (feature.properties['air base'] !== null ? autolinker.link(feature.properties['air base'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Bufferedformilitaryairportcriticalinfrastructure_10_0() {
+            return {
+                pane: 'pane_Bufferedformilitaryairportcriticalinfrastructure_10',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,120,1,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Bufferedformilitaryairportcriticalinfrastructure_10');
+        map.getPane('pane_Bufferedformilitaryairportcriticalinfrastructure_10').style.zIndex = 410;
+        map.getPane('pane_Bufferedformilitaryairportcriticalinfrastructure_10').style['mix-blend-mode'] = 'normal';
+        var layer_Bufferedformilitaryairportcriticalinfrastructure_10 = new L.geoJson(json_Bufferedformilitaryairportcriticalinfrastructure_10, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Bufferedformilitaryairportcriticalinfrastructure_10',
+            layerName: 'layer_Bufferedformilitaryairportcriticalinfrastructure_10',
+            pane: 'pane_Bufferedformilitaryairportcriticalinfrastructure_10',
+            onEachFeature: pop_Bufferedformilitaryairportcriticalinfrastructure_10,
+            style: style_Bufferedformilitaryairportcriticalinfrastructure_10_0,
+        });
+        bounds_group.addLayer(layer_Bufferedformilitaryairportcriticalinfrastructure_10);
+        map.addLayer(layer_Bufferedformilitaryairportcriticalinfrastructure_10);
+        function pop_Bufferedforhighwaycriticalinfrastructure_11(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">highway</th>\
+                        <td>' + (feature.properties['highway'] !== null ? autolinker.link(feature.properties['highway'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Bufferedforhighwaycriticalinfrastructure_11_0() {
+            return {
+                pane: 'pane_Bufferedforhighwaycriticalinfrastructure_11',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(145,82,45,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Bufferedforhighwaycriticalinfrastructure_11');
+        map.getPane('pane_Bufferedforhighwaycriticalinfrastructure_11').style.zIndex = 411;
+        map.getPane('pane_Bufferedforhighwaycriticalinfrastructure_11').style['mix-blend-mode'] = 'normal';
+        var layer_Bufferedforhighwaycriticalinfrastructure_11 = new L.geoJson(json_Bufferedforhighwaycriticalinfrastructure_11, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Bufferedforhighwaycriticalinfrastructure_11',
+            layerName: 'layer_Bufferedforhighwaycriticalinfrastructure_11',
+            pane: 'pane_Bufferedforhighwaycriticalinfrastructure_11',
+            onEachFeature: pop_Bufferedforhighwaycriticalinfrastructure_11,
+            style: style_Bufferedforhighwaycriticalinfrastructure_11_0,
+        });
+        bounds_group.addLayer(layer_Bufferedforhighwaycriticalinfrastructure_11);
+        map.addLayer(layer_Bufferedforhighwaycriticalinfrastructure_11);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        setBounds();
+        var i = 0;
+        layer_Nuclearpowerplantscriticalinfrastructure_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['power plan'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['power plan']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Nuclearpowerplantscriticalinfrastructure_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_Militaryairbasescriticalinfrastructure_2.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['air base'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['air base']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Militaryairbasescriticalinfrastructure_2'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_Waterconstructioncriticalinfrastructure_3.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['water plan'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['water plan']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Waterconstructioncriticalinfrastructure_3'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_Chemicalcontrolunitscriticalinfrastructure_4.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['HAZMAT'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['HAZMAT']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Chemicalcontrolunitscriticalinfrastructure_4'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_Highwaytransportcriticalinfrastructure_5.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['highway'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['highway']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Highwaytransportcriticalinfrastructure_5'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_River_6.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['river'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['river']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_River_6'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_Nuclearpowerplantscriticalinfrastructure_1,layer_Militaryairbasescriticalinfrastructure_2,layer_Waterconstructioncriticalinfrastructure_3,layer_Chemicalcontrolunitscriticalinfrastructure_4,layer_Highwaytransportcriticalinfrastructure_5,layer_River_6]);
+        map.on("zoomend", function(){
+            resetLabels([layer_Nuclearpowerplantscriticalinfrastructure_1,layer_Militaryairbasescriticalinfrastructure_2,layer_Waterconstructioncriticalinfrastructure_3,layer_Chemicalcontrolunitscriticalinfrastructure_4,layer_Highwaytransportcriticalinfrastructure_5,layer_River_6]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_Nuclearpowerplantscriticalinfrastructure_1,layer_Militaryairbasescriticalinfrastructure_2,layer_Waterconstructioncriticalinfrastructure_3,layer_Chemicalcontrolunitscriticalinfrastructure_4,layer_Highwaytransportcriticalinfrastructure_5,layer_River_6]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_Nuclearpowerplantscriticalinfrastructure_1,layer_Militaryairbasescriticalinfrastructure_2,layer_Waterconstructioncriticalinfrastructure_3,layer_Chemicalcontrolunitscriticalinfrastructure_4,layer_Highwaytransportcriticalinfrastructure_5,layer_River_6]);
+        });
+        </script>
+    </body>
+</html>
